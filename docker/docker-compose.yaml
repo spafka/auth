@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  database:
+    image: mysql/mysql-server:8.0
+    env_file:
+      - ./.env
+    environment:
+      MYSQL_PASSWORD: $DATABASE_PASSWORD
+      MYSQL_USER: $DATABASE_USER
+      MYSQL_DATABASE: $DATABASE_DATABASE
+    ports:
+      - 3306:3306
+    volumes:
+      - database:/var/lib/mysql
+
+  keycloak:
+    image: jboss/keycloak:12.0.1
+    env_file:
+      - ./.env
+    environment:
+      DB_ADDR: database
+      DB_DATABASE: $DATABASE_DATABASE
+      DB_USER: $DATABASE_USER
+      DB_PASSWORD: $DATABASE_PASSWORD
+      DB_VENDOR: mysql
+      KEYCLOAK_LOGLEVEL: DEBUG
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: password
+    links:
+      - database
+    ports:
+      - 8080:8080
+      - 8443:8443
+      - 9990:9990
+    volumes:
+      - ./docker/keycloak/startup-scripts:/opt/jboss/startup-scripts
+      - keycloak:/data
+
+volumes:
+  database:
+  keycloak:

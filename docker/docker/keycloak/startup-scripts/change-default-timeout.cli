@@ -1,0 +1,6 @@
+embed-server --server-config=standalone-ha.xml
+echo Changing jboss.as.management.blocking.timeout to 3600
+/system-property=jboss.as.management.blocking.timeout:add(value=3600)
+echo Changing transactions default timeout to 3600
+/subsystem=transactions/:write-attribute(name=default-timeout,value=3600)
+stop-embedded-server
