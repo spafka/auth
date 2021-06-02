@@ -4,3 +4,10 @@
 #  password: root
 #  url: jdbc:mysql://localhost:3306/user_db?serverTimezone=UTC
 #  username: root
+
+
+logging:
+  level:
+    root: info
+    org:
+      keycloak: debug

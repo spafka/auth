@@ -1,0 +1,26 @@
+server:
+  port: 8083
+
+spring:
+  datasource:
+    username: sa
+    url: jdbc:h2:mem:customdb
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: root
+    url: jdbc:mysql://localhost:3306/cloak?serverTimezone=UTC
+    username: root
+  jpa:
+    database: mysql
+
+
+keycloak:
+  server:
+    adminUser:
+      username: admin
+      password: admin
+    realmImportFile: baeldung-realm.json
+    context-path: /auth
+#DB_VENDOR: mysql
