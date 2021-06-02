@@ -96,14 +96,14 @@
 	},
 	"connectionsJpa": {
 		"default": {
-			"url": "${keycloak.connectionsJpa.url:jdbc:h2:./target/keycloak}",
-			"driver": "${keycloak.connectionsJpa.driver:org.h2.Driver}",
+			"url": "${keycloak.connectionsJpa.url:jdbc:mysql://localhost:3306/cloak?createDatabaseIfNotExist=true&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true}",
+			"driver": "${keycloak.connectionsJpa.driver:com.mysql.cj.jdbc.Driver}",
 			"driverDialect": "${keycloak.connectionsJpa.driverDialect:}",
-			"user": "${keycloak.connectionsJpa.user:sa}",
-			"password": "${keycloak.connectionsJpa.password:}",
+			"user": "${keycloak.connectionsJpa.user:root}",
+			"password": "${keycloak.connectionsJpa.password:root}",
 			"initializeEmpty": true,
 			"migrationStrategy": "update",
-			"showSql": "${keycloak.connectionsJpa.showSql:false}",
+			"showSql": "${keycloak.connectionsJpa.showSql:true}",
 			"formatSql": "${keycloak.connectionsJpa.formatSql:true}",
 			"globalStatsInterval": "${keycloak.connectionsJpa.globalStatsInterval:-1}"
 		}
