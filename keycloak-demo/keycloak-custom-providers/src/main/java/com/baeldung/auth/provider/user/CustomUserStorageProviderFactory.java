@@ -23,7 +23,7 @@ public class CustomUserStorageProviderFactory implements UserStorageProviderFact
         log.info("[I24] CustomUserStorageProviderFactory created");
         
         
-        // Create config metadata
+        // 配置文件的提示信息
         configMetadata = ProviderConfigurationBuilder.create()
           .property()
             .name(CONFIG_KEY_JDBC_DRIVER)

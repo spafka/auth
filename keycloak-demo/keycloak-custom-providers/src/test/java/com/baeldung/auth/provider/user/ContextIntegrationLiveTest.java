@@ -1,5 +1,6 @@
 package com.baeldung.auth.provider.user;
 
+import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
@@ -39,21 +40,18 @@ public class ContextIntegrationLiveTest {
     
     @Autowired
     private RestTemplate restTemplate;
+    @Autowired
+    DataSource dataSource;
     
-    @BeforeAll
-    public static void populateTestDatabase() throws Exception {
+    @Before
+    public  void populateTestDatabase() throws Exception {
         log.info("Populating database...");
-        DataSource ds =  DataSourceBuilder.create()
-            .driverClassName("org.h2.Driver")
-            .url("jdbc:h2:./target/customuser")
-            .username("SA")
-            .password("")
-            .build();
+
 
         ResourceDatabasePopulator populator = new ResourceDatabasePopulator(false, false, "UTF-8",
           new ClassPathResource("custom-database-data.sql"));
-        populator.execute(ds);
-        
+        populator.execute(dataSource);
+
     }
     
     @Test
@@ -68,7 +66,7 @@ public class ContextIntegrationLiveTest {
         log.info("Keycloak test server available at {}/auth", baseUrl);
         log.info("To test a custom provider user login, go to {}/auth/realms/baeldung/account",baseUrl);
         
-        Thread.sleep(15*60*1000); 
+        Thread.sleep(15*60*1000000);
         
     }
 
