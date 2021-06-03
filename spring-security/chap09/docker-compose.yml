@@ -1,26 +1,29 @@
 version: "3.3"
 services:
   mysql:
-    image: mysql:5.7
+    image: mysql:8
     volumes:
       - mysql_data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: keycloak
       MYSQL_USER: keycloak
-      MYSQL_PASSWORD: password
+      MYSQL_PASSWORD: keycloak
+    ports:
+      - 3307:3306
   keycloak:
-    image: quay.io/keycloak/keycloak:latest
+    image: quay.io/keycloak/keycloak:10.0.2
+
     volumes:
       - ./realm-export.json:/opt/jboss/keycloak/imports/realm-export.json
     environment:
       DB_VENDOR: MYSQL
       DB_ADDR: mysql
       DB_DATABASE: keycloak
-      DB_USER: keycloak
-      DB_PASSWORD: password
+      DB_USER: root
+      DB_PASSWORD: root
       KEYCLOAK_USER: admin
-      KEYCLOAK_PASSWORD: Pa55w0rd
+      KEYCLOAK_PASSWORD: admin
       KEYCLOAK_IMPORT: /opt/jboss/keycloak/imports/realm-export.json
       # 如果需要指定 JDBC 参数，可以参考下面的方式
       #JDBC_PARAMS: "connectTimeout=30000"
@@ -30,4 +33,4 @@ services:
       - mysql
 
 volumes:
-  mysql_data: {}
+  mysql_data: { }

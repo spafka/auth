@@ -10,9 +10,9 @@ import java.util.List;
 @Controller
 public class ContentController {
 
-    @GetMapping("/foos")
+    @GetMapping("/content")
     public String getFoos(Model model) {
-        model.addAttribute("foos", List.of(new Foo("Client-2", "This is second client")));
+        model.addAttribute("foos", List.of(new Foo("Client-1", "This is first client")));
         return "content";
     }
 }
