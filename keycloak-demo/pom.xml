@@ -23,7 +23,7 @@
 	<modules>
 		<module>keycloak-custom-providers</module>
 		<module>oauth-authorization-server</module>
-		<module>embedded-keycloak</module>
+		<module>sso</module>
 	</modules>
 
 
