@@ -3,6 +3,8 @@ package com.baeldung.auth.config;
 import org.keycloak.platform.PlatformProvider;
 import org.keycloak.services.ServicesLogger;
 
+import java.io.File;
+
 public class SimplePlatformProvider implements PlatformProvider {
 
 	Runnable shutdownHook;
@@ -21,6 +23,11 @@ public class SimplePlatformProvider implements PlatformProvider {
 	public void exit(Throwable cause) {
 		ServicesLogger.LOGGER.fatal(cause);
 		exit(1);
+	}
+
+	@Override
+	public File getTmpDirectory() {
+		return new File("/tmp");
 	}
 
 	private void exit(int status) {
