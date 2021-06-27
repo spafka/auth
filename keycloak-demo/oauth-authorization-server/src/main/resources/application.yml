@@ -1,5 +1,5 @@
 server:
-  port: 8083
+  port: 8080
 
 spring:
   datasource:
@@ -108,7 +108,7 @@ keycloak:
       enabled: true
 
   mapStorage:
-    provider: jps
+    provider: jpa
 
   client:
     provider: jpa

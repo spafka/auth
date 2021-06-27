@@ -25,10 +25,6 @@ public class SimplePlatformProvider implements PlatformProvider {
 		exit(1);
 	}
 
-	@Override
-	public File getTmpDirectory() {
-		return new File("/tmp");
-	}
 
 	private void exit(int status) {
 		new Thread(() -> System.exit(status)).start();
